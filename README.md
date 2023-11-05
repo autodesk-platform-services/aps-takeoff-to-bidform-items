@@ -44,13 +44,7 @@ This sample demonstrates the use case: The project administrator of BuildingConn
     - Users (no subscription required)
     - Opportunities (Bid Board Pro)
     - All others (BuildingConnected Pro)
-7. **Bid Project**:
-     - 7.1. Create one test project in BuildingConnected manually or by this sample (see ).
-     - 7.2. Associate this project with the ACC project in step 4.
-    -  7.3. Create one bid package with the same name in step 5.2. In the specific scope form, create some items with the same name and types of takeoff items in step 5.3.
-     - 7.4. Publish this bid package and invite some bidders.
-     - 7.5. Bidders send bid with filling in the unit price and quantity of the items of specific scope form.
-     - 7.6. Check the bid leveling table.
+7. (Optional)**Bid Project and BidPackage**: Create one test project and bidPackage in BuildingConnected manually
 8. **Node.js**: knowledge with [**Node.js**](https://nodejs.org/en/).
 9. knowledge with **html5**,**JavaScript**, **css**,**jQuery** and **bootstrap**
 10.knowledge with **Data Management API with ACC Docs**, **Viewer SDK** and **ACC Takeoff API** and **BuildingConnected API** etc.
