@@ -1,0 +1,26 @@
+{
+  "name": "aps-acc.sheet.manager",
+  "description": "A few demonstrations of Sheet API of ACC ",
+  "repository": "https://github.com/autodesk-platform-services/aps-acc.sheet.manager",
+  "logo": "",
+  "keywords": [
+      "autodesk",
+      "aps",
+      "acc",
+      "sheet"
+  ],
+  "env": {
+      "APS_CLIENT_ID": {
+          "description": "APS Client ID"
+      },
+      "APS_CLIENT_SECRET": {
+          "description": "APS Client Secret"
+      },
+      "APS_CALLBACK_URL": {
+        "description": "Callback URL of your APS app, required for 3-legged OAuth",
+        "value": "https://<<YOUR HEROKU APP NAME HERE>>.herokuapp.com/api/aps/callback/oauth"
+     }
+  },
+  "website": "https://developer.autodesk.com/",
+  "success_url": "/"
+}

@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>TakeOff to Bid Scope Specific Form</title>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="https://cdn.autodesk.io/favicon.ico">
+
+  <!-- Common packages: jQuery, Bootstrap, jsTree -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- js tree -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/jstree.min.js"></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.3.7/themes/default/style.min.css" />
+  <!-- bootstrap-table -->
+  <link href="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/bootstrap-table@1.18.0/dist/bootstrap-table.min.js"></script>
+
+  <!-- APS Viewer -->
+  <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.min.css"
+    type="text/css">
+  <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.min.js"></script>
+  <!-- this project files -->
+  <link href="css/main.css" rel="stylesheet" />
+  <script src="js/main.js" type="module"></script>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav left col-lg-8">
+        <li>
+          <a href="http://developer.autodesk.com" target="_blank">
+            <img alt="Autodesk APS" src="https://cdn.autodesk.io/logo/black/simple.png" height="20">
+          </a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav right col-lg-2">
+        <li>
+          <div style="float: right; margin-top: 15px;">
+            <span style="padding-right: 5px;" data-toggle="modal" data-target="#provisionAccountModal"
+              title="Enable my ACC Account"><span class="glyphicon glyphicon-cog glyphiconTop mlink"> </span> Enable
+              my Autodesk Account</span>
+          </div>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav right col-lg-2">
+        <div style="padding-top: 10px; text-align: right;">
+          <li>
+            <button class="btn btn-sm btn-default" id="autodeskSigninButton" hidden>Sign In &nbsp&nbsp
+              <img src="https://cdn.autodesk.io/autodesk.png" height="20">
+            </button>
+            <button class="btn btn-sm btn-default" id="autodeskSignOutButton" hidden>Sign Out &nbsp&nbsp<span
+                id="userInfo"></span>
+            </button>
+          </li>
+        </div>
+      </ul>
+
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 fill">
+        <div class="row takeOffPackageTree">
+          <h4 style="text-align: center;">Takeoff Packages</h4>
+          <div class="panel-heading" data-toggle="tooltip" style="padding: 0px;">
+            <span id="refreshBids" class="glyphicon glyphicon-refresh" style="cursor: pointer; display: none"
+              title="Refresh"></span>
+          </div>
+          <div id="takeOffPackageTree">
+          </div>
+        </div>
+
+        <div class="row bidPackageTree">
+          <h4 style="text-align: center;">Bid Packages</h4>
+          <div class="panel-heading" data-toggle="tooltip" style="padding: 0px;">
+            <span id="refreshBids" class="glyphicon glyphicon-refresh" style="cursor: pointer; display: none"
+              title="Refresh"></span>
+          </div>
+          <div id="bidPackageTree">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-5 fill">
+        <div class="row takeOffItems">
+          <h4 style="text-align: center;">Takeoff Items</h4>
+          <table class="table table-striped table-bordered table-hover" id="takeOffItemsTables">
+          </table>
+          <div class="progressTakeOffItems" hidden>
+            <div style="text-align: center;">
+              <img src="./img/Bars-1s-200px.svg" class="clsInProgress">
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row modelView">
+          <h4 style="text-align: center;">Model View</h4>
+          <div id="apsViewer" style="height: calc(45vh);">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 fill">
+        <div class="row bidScopeSpecificForm">
+          <h4 style="text-align: center;">Bid Scope Specific Forms <div style="padding-left: 10px;"><button type="button" class="btn btn-sm btn-default" id="uploadScopeSpecificItems" ><span class="fa fa-upload"></span></button></div></h4>
+
+          <div class="row" style="padding-left: 10px;padding-bottom: 50px;">
+            <h5>Line Items</h5>
+            <div class="header" style="display: flex;border-bottom: 1px solid silver;;">
+              <div style="flex:0 0 10vh;">code</div>
+              <div style="flex:0 0 20vh;">Description</div>
+              <div style="flex:0 0 10vh;">Quantity</div>
+              <div style="flex:0 0 8vh;">Type</div>
+              <div style="flex:0 0 2vh;">Required?</div>
+            </div>
+            <div id="LineItems" style="padding-left: 10px;padding-bottom: 30px;">
+             
+            </div>
+            <div id="LineItemsAdd">
+              <a id="addLineItem" >+ add line item</a>
+            </div>
+          </div>
+
+          <div class="row"  style="padding-left: 10px;padding-bottom: 50px;">
+            <h5>Alternates</h5>
+            <div id="Alternates" style="padding-left: 10px;padding-bottom: 30px;">
+             
+            </div>
+            <div id="AlternatesAdd">
+              <a href="#">+ add alternates</a>
+            </div>
+          </div>
+
+          <div class="row"  style="padding-left: 10px;padding-bottom: 50px;">
+            <h5>Inclusions</h5>
+            <div id="Inclusions" style="padding-left: 10px;padding-bottom: 30px;">
+             
+            </div>
+            <div id="InclusionsAdd">
+              <a href="">+ add inclusions</a>
+            </div>
+          </div>
+
+          <div class="row"  style="padding-left: 10px;padding-bottom: 50px;">
+            <h5>Scope-Specific Information & Unit Costs</h5>
+            <div id="UnitCosts" style="padding-left: 10px;padding-bottom: 30px;">
+             
+            </div>
+            <div id="UnitCostsAdd">
+              <a href="">+ add unit costs</a>
+            </div>
+          </div>
+
+          <div class="row"  style="padding-left: 10px;padding-bottom: 50px;">
+            <h5>Scope-Specific Clarifications</h5>
+            <div id="Clarifications" style="padding-left: 10px;padding-bottom: 30px;">
+             
+            </div>
+            <div id="ClarificationsAdd">
+              <a href="">+ add clarifications</a>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row bidProjectForm" hidden>
+          <h4 style="text-align: center;">Bid Project Forms <div style="padding-left: 10px;"><button type="button" class="btn btn-sm btn-default"  ><span class="fa fa-upload"></span></button></div></h4>
+
+          <div class="row" id="GeneralAcknowledgments">
+            <h5>General Acknowledgments</h5>
+
+          </div>
+
+          <div class="row" id="BondInformation">
+            <h5>Bond Information</h5>
+
+          </div>
+
+          <div class="row" id="FeeandMarkups">
+            <h5>Fees and Markups</h5>
+
+          </div>
+
+          <div class="row" id="UnitCosts">
+            <h5>Labor Rates</h5>
+
+          </div>
+
+          <div class="row" id="Certifications">
+            <h5>Certifications</h5>
+          </div>
+
+          <div class="row" id="DisclaimersandClarifications">
+            <h5>Disclaimers and Clarifications </h5>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="bcUserId" style="display: none;"></div>
+
+</body>
+
+</html>
