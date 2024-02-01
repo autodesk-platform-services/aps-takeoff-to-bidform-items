@@ -107,7 +107,7 @@ To deploy this application to Heroku, the **Callback URL** for Forge must use yo
 ## Limitations
 1. This sample does not implement complex scope-specific-form such as nested sections.
 2. This sample does not implement all unit types.
-3. This sample only implements the type of Line Items. As to Alternates, Inclusions, etc, the title is listd in the form, but has nit yet been added the specific items. 
+3. This sample only implements the type of Line Items. As to Alternates, Inclusions, etc, the section is designed, but no contents. The code logic can be similar to that of Line Items.  
 
 # Further Reading
 
